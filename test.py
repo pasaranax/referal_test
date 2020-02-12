@@ -15,7 +15,7 @@ def test_log():
 
 def test_purchases():
     log = json.load(open("log.json"))
-    parser = Parser(log)
+    parser = Parser(log, sort=True)
     counter = 0
     for customer in parser.records(only_purchases=True):
         counter += 1
@@ -25,7 +25,7 @@ def test_purchases():
 
 def test_ours_purchases():
     log = json.load(open("log.json"))
-    parser = Parser(log)
+    parser = Parser(log, sort=True)
     counter = 0
     for customer in parser.records(partner="referal.ours.com", only_purchases=True):
         counter += 1
