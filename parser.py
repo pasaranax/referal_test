@@ -2,8 +2,11 @@ from urllib.parse import urlparse
 
 
 class Parser:
-    def __init__(self, log):
-        self.log = log
+    def __init__(self, log, sort=False):
+        if sort:
+            self.log = sorted(log, key=lambda x: x["date"])
+        else:
+            self.log = log
         self.customers = {}
 
     def records(self, partner=None, only_purchases=False):
@@ -52,4 +55,4 @@ class Customer:
             self.purchase = None
 
     def __repr__(self):
-        return f"Customer(client_id={self.client_id}, partner={self.last_partner})"
+        return f"Customer(client_id={self.client_id}, partner={self.last_partner}, purchase={self.purchase is not None})"
